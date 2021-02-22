@@ -1,5 +1,5 @@
 import React from 'react'
-import "./navBar.css"
+import "./Navbar.css"
 import Rating from "../Component/Rating"
 export default function Navbar({setName , setRatingsearch , ratingSearch}) {
     return (
