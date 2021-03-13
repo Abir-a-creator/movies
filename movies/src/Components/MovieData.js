@@ -1,37 +1,10 @@
-export const moviesData =([
-    {
-      name : "Sniper ultimate kill",
-      url:"https://occ-0-993-988.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABYkUZNnj6BbkK9xm9o7iFyrIlv2pFs66uYIFRaiSOsSc1RpgneRQHlPYRDs_uSckJoSigESLx_yLqP9-cgxstjRz0Nw.jpg",
-      id : 1,
-      rate : 4
+const MovieData = [
+  {id:1,image:'blackSwan.jpg',title:'Black Swan',description:'Black Swan is a 2010 American psychological horror film directed by Darren Aronofsky',rate:2, trailer:'https://www.youtube.com/embed/5jaI1XOB-bs'},
+  {id:2,image:'killBill.jpg',title:'Kill Bill',description:'After awakening from a four-year coma, a former assassin wreaks vengeance on the team of assassins who betrayed her.',rate:4, trailer:'https://www.youtube.com/embed/7kSuas6mRpk'},
+  {id:3,image:'mulholllandDrive.jpg',title:'Mulholland Drive',description:'Mulholland Drive is a twisting, turning road that tells a story of the history of Hollywood.',rate:3, trailer:'https://www.youtube.com/embed/jbZJ487oJlY'},
+  {id:4,image:'parasite.jpg',title:'Parasite',description:'Parasite follows the Kim family struggling to make ends meet until son Ki-woo comes across an unexpected opportunity.',rate:5, trailer:'https://www.youtube.com/embed/5xH0HfJHsaY'},
+  {id:5,image:'pulpFiction.jpg',title:'Pulp Fiction',description:'Pulp Fiction is a 1994 American neo-noir black comedy crime film written and directed by Quentin Tarantino',rate:1, trailer:'https://www.youtube.com/embed/s7EdQ4FqbhY'},
+  {id:6,image:'roma.jpg',title:'Roma',description:'Roma spends roughly a year in the life of Cleo as she plans for motherhood, tries to support a family that is coming apart, and simply moves ...',rate:2, trailer:'https://www.youtube.com/embed/FkzidhAg45U'},
+]
 
-    },
-    {
-      name : "Mechanic Resurrection",
-      url:"https://i.pinimg.com/originals/e6/93/69/e693694c06c39d18d287763069e9dd33.jpg",
-      id : 2,
-      rate : 5
-
-    },
-    {
-      name : "S.W.A.T.",
-      url:"https://fr.web.img3.acsta.net/medias/nmedia/18/35/15/05/18364764.jpg",
-      id :3,
-      rate : 4 
-
-    },
-    {
-      name : "Wanted",
-      url:"https://musicimage.xboxlive.com/catalog/video.movie.8D6KGWZL5CN0/image?locale=fr-fr&mode=crop&purposes=BoxArt&q=90&h=225&w=150&format=jpg",
-      id : 4,
-      rate : 3
-
-    },
-    {
-      name : "Outside the wire",
-      url:"https://otakukart.com/wp-content/uploads/2020/12/Outside-The-Wire-600x380-1.jpg",
-      id : 5,
-      rate : 3
-
-    },
-  ]);
+export default MovieData
