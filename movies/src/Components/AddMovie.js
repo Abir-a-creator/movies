@@ -1,70 +1,62 @@
-import React , {useState} from 'react'
-import Modal   from 'react-bootstrap/Modal'
-import {Button}   from 'react-bootstrap' 
-import Form from 'react-bootstrap/Form'
-import Rating from "./Rating"
-export default function AddMovie({addMv}) {
-    const [show, setShow] = useState(false);
-    const [name, setName] = useState('');
-    const [image, setImage] = useState('');
-    const [rate, setRate] = useState(0);
- 
+import React, { useState } from 'react'
+import Modal from 'react-modal'
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
-    const handleChange = (e) =>{
-      let newmovie ={
-        name : name ,
-        image : image,
-        rate : rate ,
-        id: Math.random(),
-       
-      }
+Modal.setAppElement('#root')
+const AddMovie = (props) => {
 
-  addMv(e,newmovie) ;
-  setShow(false);
-  setName('');
-  setImage('');
-  setRate('');
+    const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
+    const [url, setUrl] = useState('')
+    const [rating, setRating] = useState()
+    const [trailer, setTrailer]=useState('')
 
-    }
-  
+    const [modalIsOpen, setModalIsOpen] = useState(false)
+
+    const {addMovie}=props
+    const customStyles = {
+        content: {
+          zIndex: "99"
+        }
+      };
+
     return (
         <div>
-          
-      <Button variant="primary" onClick={handleShow}>
-        Add your new movie
-      </Button>
-
-      <Modal show={show} onHide={handleClose} animation={false}>
-        <Modal.Header closeButton>
-          <Modal.Title>Here to add you movie </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-        <Form.Group >
-              <Form.Label>Name: </Form.Label>
-              <Form.Control type="text" placeholder="name input" value={name}
-            name="name"
-            required
-            onChange={(e) => setName(e.target.value)}/>    
-              <Form.Label>URL: </Form.Label>
-              <Form.Control type="text" placeholder="URL image input"  value={image}
-              onChange={(e)=> setImage(e.target.value) }/>
-              <Form.Label>Movie Rate: </Form.Label>
-              <Rating rate={rate} setRate={setRate} />
-               
-          </Form.Group>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleChange}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal> 
+            <div className='right'>
+                <button className='btn-primary btn-right' onClick={() => setModalIsOpen(true)} >Add movie</button>
+            </div>
+            <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} style={customStyles}>
+                <form className='myform'>
+                    <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">Title of movie</label>
+                        <input value={name} required onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="formGroupExampleInput" placeholder="Example input" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">description of movie</label>
+                        <input value={description} required onChange={(e) => setDescription(e.target.value)} type="text" className="form-control" id="formGroupExampleInput2" placeholder="Another input" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">Rate</label>
+                        <input value={rating} required onChange={(e) => setRating(e.target.value)} type="number" className="form-control" id="formGroupExampleInput2" placeholder="Another input" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">image url</label>
+                        <input value={url} required onChange={(e) => setUrl(e.target.value)} type="text" className="form-control" id="formGroupExampleInput2" placeholder="Another input" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">video url</label>
+                        <input value={trailer} required onChange={(e) => setTrailer(e.target.value)} type="text" className="form-control" id="formGroupExampleInput2" placeholder="Another input" />
+                    </div>
+                    <button className='btn-primary btn-block mb-3' onClick={(e) => {
+                        e.preventDefault();
+                        addMovie({ id: Date.now(),title: name, description: description, image: url, rate: rating, trailer:trailer })
+                        alert('your movie has been added successfully')
+                        setModalIsOpen(false)
+                    }} type='submit'>Add</button>
+                </form>
+            </Modal>
         </div>
     )
 }
+
+export default 
