@@ -1,38 +1,53 @@
-import React,{ useState}  from "react"
+import React, { useState } from 'react'
+import DataCard from './components/MovieCard'
+import MovieList from './components/MovieList';
+import Search from './components/Search';
+import Trailer from './components/Trailer'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import AddMovie from "./Components/AddMovie";
-import Moviecard from "./Components/MovieCard";
-import {moviesData} from "./Components/MovieData"
-import MovieList from "./Components/MovieList";
+
+const App = () => {
+
+  const [film, setFilm] = useState(DataCard)
 
 
-import Navbar from "./navBar/Navbar"
-import Info from "./Components/Info"
+  const [array, setArray] = useState([])
 
-function App() {
-
-  const [movie , setMovie] =  useState(moviesData) ;
-  const [name , setName] =  useState("") ;
-  const [ratingSearch , setRatingsearch] = useState("");
-
-  const addMv = (e , newmovie)=> {
-    e.preventDefault() ;
-    return setMovie([...movie, newmovie]) 
+  const addMovie = (x) => {
+    return setFilm([...film, x])
   }
+
+  const searchMovie = (search) => {
+    const test = film.filter((x) => x.title.toLowerCase().includes(search))
+    return setArray(test)
+  }
+
+  const searchRating = (rating) => {
+    const test = film.filter((x) => x.rate >= rating)
+    return setArray(test)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-      <Navbar />
-      <MovieList/>
-      <AddMovie/>
-      <Info/>
-      <Moviecard/>
+    <React.Fragment>
+      <Search searchMovie={searchMovie} searchRating={searchRating} />
+      <Router>
+        <Switch>
+          <Route exact path='/'>
+            <div>
+              <MovieList film={film} movie={array} addMovie={addMovie} />
+            </div>
+          </Route>
+          <Route exact path='/Trailer/:id' render={(props)=>
+          
+            <Trailer arr={film} {...props} />
+          }>
+          </Route>
+        </Switch>
       
-     
-    
-      </header>
-    </div>
-  );
+      </Router>
+
+    </React.Fragment>
+  )
 }
 
 export default App;
